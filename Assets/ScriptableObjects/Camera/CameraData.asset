@@ -15,3 +15,8 @@ MonoBehaviour:
   minMoveDistanceSpeed: 50
   maxMoveDistanceSpeed: 100
   moveDistanceSpeedChangeStep: 25
+  cameraBounds:
+    top: 170
+    bottom: -2350
+    left: -380
+    right: 2600
