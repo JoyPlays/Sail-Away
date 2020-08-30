@@ -5,12 +5,9 @@ using UnityEngine;
 public class CameraMoveController : MonoBehaviour, IUpdateable
 {
 	[SerializeField] private Transform freeLookCameraTransform;
+	[SerializeField] private CameraDataSO cameraData;
 
 	private float _currentMoveDistance = 50f;
-	
-	private const float MinMoveDistance = 50f;
-	private const float MaxMoveDistance = 100f;
-	private const float MoveDistanceChangeStep = 10f;
 	
 	private void Start()
 	{
@@ -38,14 +35,14 @@ public class CameraMoveController : MonoBehaviour, IUpdateable
 		{
 			pos.x += horizontalAxis;
 			pos.z += verticalAxis;
-			_currentMoveDistance += deltaTime * MoveDistanceChangeStep;
+			_currentMoveDistance += deltaTime * cameraData.moveDistanceSpeedChangeStep;
 		}
-		else if (_currentMoveDistance > MinMoveDistance)
+		else if (_currentMoveDistance > cameraData.minMoveDistanceSpeed)
 		{
-			_currentMoveDistance = MinMoveDistance;
+			_currentMoveDistance = cameraData.minMoveDistanceSpeed;
 		}
 
-		_currentMoveDistance = Mathf.Clamp(_currentMoveDistance, MinMoveDistance, MaxMoveDistance);
+		_currentMoveDistance = Mathf.Clamp(_currentMoveDistance, cameraData.minMoveDistanceSpeed, cameraData.maxMoveDistanceSpeed);
 		Debug.Log(_currentMoveDistance);
 		
 		freeLookCameraTransform.position = Vector3.MoveTowards(freeLookCameraTransform.position, pos, _currentMoveDistance * deltaTime);

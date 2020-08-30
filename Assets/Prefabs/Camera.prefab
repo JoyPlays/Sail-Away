@@ -259,8 +259,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d4c8e78746cee94ba68a53889423d51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  freeLookVirtualCamera: {fileID: 1068292461}
   freeLookCameraTransform: {fileID: 1068292460}
+  cameraData: {fileID: 11400000, guid: 8267c1deb0232b4489a12e8d30b74e21, type: 2}
 --- !u!114 &5479264230013690844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -367,7 +367,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6524339708008338571}
   m_LocalRotation: {x: 0.38268346, y: -0, z: -0, w: 0.9238795}
-  m_LocalPosition: {x: 0, y: 100, z: -5.9300003}
+  m_LocalPosition: {x: 0, y: 100, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1030110042970401391}
