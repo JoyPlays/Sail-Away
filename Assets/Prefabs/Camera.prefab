@@ -24,13 +24,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1068292459}
-  m_LocalRotation: {x: 0.38268346, y: 0, z: 0, w: 0.9238795}
-  m_LocalPosition: {x: 0, y: 100, z: 0}
+  m_LocalRotation: {x: 0.38268346, y: -0, z: -0, w: 0.9238795}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2053800432}
-  m_Father: {fileID: 1030110042970401391}
-  m_RootOrder: 1
+  m_Father: {fileID: 3260194720932992303}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 60, y: 45, z: 0}
 --- !u!114 &1068292461
 MonoBehaviour:
@@ -210,6 +210,7 @@ GameObject:
   - component: {fileID: 1030110042970401391}
   - component: {fileID: 6798132329592837099}
   - component: {fileID: 2354380789003178345}
+  - component: {fileID: 2873602357575577726}
   - component: {fileID: 5479264230013690844}
   m_Layer: 0
   m_Name: Camera
@@ -230,7 +231,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2667484075284600248}
-  - {fileID: 1068292460}
+  - {fileID: 3260194720932992303}
   - {fileID: 2635335700569659577}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -259,7 +260,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d4c8e78746cee94ba68a53889423d51, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  freeLookCameraTransform: {fileID: 1068292460}
+  movableTransform: {fileID: 3260194720932992303}
+  cameraData: {fileID: 11400000, guid: 8267c1deb0232b4489a12e8d30b74e21, type: 2}
+--- !u!114 &2873602357575577726
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1030110042970401386}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01a116b4fb66f5146930523526857082, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cameraTransform: {fileID: 1068292460}
   cameraData: {fileID: 11400000, guid: 8267c1deb0232b4489a12e8d30b74e21, type: 2}
 --- !u!114 &5479264230013690844
 MonoBehaviour:
@@ -458,3 +473,34 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &8978247035150418929
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3260194720932992303}
+  m_Layer: 0
+  m_Name: FreeLookCameraContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3260194720932992303
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8978247035150418929}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 100, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 1068292460}
+  m_Father: {fileID: 1030110042970401391}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

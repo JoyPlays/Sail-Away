@@ -1,15 +1,11 @@
-﻿using System;
-using System.ComponentModel;
-using Cinemachine;
-using Unity.Collections;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class CameraMoveController : MonoBehaviour, IUpdateable
 {
-	[SerializeField] private Transform freeLookCameraTransform;
+	[SerializeField] private Transform movableTransform;
 	[SerializeField] private CameraDataSO cameraData;
 
-	private float _currentMoveDistance = 50f;
+	private float _currentMoveDistanceDelta = 50f;
 	
 	private void Start()
 	{
@@ -31,25 +27,25 @@ public class CameraMoveController : MonoBehaviour, IUpdateable
 	{
 		float horizontalAxis = Input.GetAxis("Horizontal");
 		float verticalAxis = Input.GetAxis("Vertical");
-		Vector3 pos = freeLookCameraTransform.position;
+		Vector3 pos = movableTransform.localPosition;
 		
-		if (Math.Abs(horizontalAxis) > 0.001f || Math.Abs(verticalAxis) > 0.001f)
+		if (Mathf.Abs(horizontalAxis) > 0.001f || Mathf.Abs(verticalAxis) > 0.001f)
 		{
 			pos.x += horizontalAxis;
 			pos.z += verticalAxis;
-			_currentMoveDistance += deltaTime * cameraData.moveDistanceSpeedChangeStep;
+			_currentMoveDistanceDelta += deltaTime * cameraData.moveDistanceSpeedChangeStep;
 		}
-		else if (_currentMoveDistance > cameraData.minMoveDistanceSpeed)
+		else if (_currentMoveDistanceDelta > cameraData.minMoveDistanceSpeed)
 		{
-			_currentMoveDistance = cameraData.minMoveDistanceSpeed;
+			_currentMoveDistanceDelta = cameraData.minMoveDistanceSpeed;
 		}
 
-		_currentMoveDistance = Mathf.Clamp(_currentMoveDistance, cameraData.minMoveDistanceSpeed, cameraData.maxMoveDistanceSpeed);
+		_currentMoveDistanceDelta = Mathf.Clamp(_currentMoveDistanceDelta, cameraData.minMoveDistanceSpeed, cameraData.maxMoveDistanceSpeed);
 		
-		Vector3 newPosition = Vector3.MoveTowards(freeLookCameraTransform.position, pos, _currentMoveDistance * deltaTime);
+		Vector3 newPosition = Vector3.MoveTowards(movableTransform.localPosition, pos, _currentMoveDistanceDelta * deltaTime);
 		newPosition.x = Mathf.Clamp(newPosition.x, cameraData.cameraBounds.left, cameraData.cameraBounds.right);
 		newPosition.z = Mathf.Clamp(newPosition.z, cameraData.cameraBounds.bottom, cameraData.cameraBounds.top);
 
-		freeLookCameraTransform.position = newPosition;
+		movableTransform.localPosition = newPosition;
 	}
 }
