@@ -12,7 +12,8 @@ GameObject:
   - component: {fileID: 32478460441647780}
   - component: {fileID: 32478460441647781}
   - component: {fileID: 32478460441647782}
-  m_Layer: 0
+  - component: {fileID: 6790487589340150798}
+  m_Layer: 8
   m_Name: Chunk020
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,7 +27,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 32478460441647777}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 727.02734, y: 69.5672, z: -478.27185}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -69007,3 +69008,17 @@ MonoBehaviour:
   m_SelectedFaces: 
   m_SelectedEdges: []
   m_SelectedVertices: 
+--- !u!64 &6790487589340150798
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 32478460441647777}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 0
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 0}

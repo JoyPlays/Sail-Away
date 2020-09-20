@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6099640279116356732}
   - component: {fileID: 6099640279116356733}
   - component: {fileID: 6099640279116356730}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Chunk043
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,7 +26,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6099640279116356729}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2327.0273, y: 69.5672, z: -78.27197}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
