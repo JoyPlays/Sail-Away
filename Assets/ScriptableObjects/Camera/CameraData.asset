@@ -20,7 +20,7 @@ MonoBehaviour:
     bottom: -2350
     left: -380
     right: 2600
-  maxZoomOutValue: -50
-  maxZoomInValue: 80
-  zoomStep: 25
+  maxZoomOutValue: 60
+  maxZoomInValue: 20
+  zoomStep: 10
   zoomDelta: 50
