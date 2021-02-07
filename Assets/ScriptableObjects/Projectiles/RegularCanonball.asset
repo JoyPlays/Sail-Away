@@ -9,9 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1fc7b587a8d78494cb1d9c3e47d95644, type: 3}
-  m_Name: Cannon01
+  m_Script: {fileID: 11500000, guid: b92f3e6d58d8f7643b6d090f95e198eb, type: 3}
+  m_Name: RegularCanonball
   m_EditorClassIdentifier: 
-  type: 0
-  accuracy: 1
-  projectileSpeed: 1

@@ -5,8 +5,6 @@ using UnityEngine;
 public class WeaponSlot : MonoBehaviour
 {
 	#region Fields
-
-	[SerializeField] private WeaponType weaponType;
 	
 	private Transform _transform;
 	
