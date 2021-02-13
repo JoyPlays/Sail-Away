@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Cannon01
   m_EditorClassIdentifier: 
   type: 0
+  range: 10
   accuracy: 1
   projectileSpeed: 1

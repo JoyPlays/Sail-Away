@@ -3,44 +3,72 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponAimController : MonoBehaviour, IAimable
+public class WeaponAimController : MonoBehaviour, IAimable, IUpdateable
 {
 	[SerializeField] private AnimationCurve barrelAimCurve = AnimationCurve.Linear(0f,0f, 1f, 1f);
+
+	[SerializeField] private TargetGatherController targetGatherController;
 	
 	[SerializeField] private Vector3 minBarrelRot = new Vector3(0f, 0f, 0f);
 	[SerializeField] private Vector3 maxBarrelRot = new Vector3(-30f, 0f, 0f);
-	
-	[SerializeField] private float range = 10;
 	
 	[SerializeField] private Transform bodyTransform;
 	[SerializeField] private Transform barrelTransform;
 	
 	
 	[SerializeField] private Transform target;
+	
+	private float range = 10;
 
-	public Transform Target => target;
+	public Transform Target
+	{
+		get => target;
+		set
+		{
+			target = value;
+		}
+	}
 
 	private float distanceToTarget;
 
-	private void Update()
+	public void Setup(WeaponDataSO data)
+	{
+		range = data.Range * 2f;
+		targetGatherController.Setup(data);
+	}
+
+	private void Start()
+	{
+		if (UpdateController.Instance)
+		{
+			UpdateController.Instance.RegisterUpdateableObject(this);
+		}
+	}
+	
+	public void OnUpdate(float deltaTime)
 	{
 		if (Target)
 		{
-			distanceToTarget = Vector3.Distance(bodyTransform.position, Target.position);
-			if (distanceToTarget <= range)
-			{
-				AimAtTarget();
-			}
+			AimAtTarget();
+		}
+	}
+
+	private void OnDestroy()
+	{
+		if (UpdateController.Instance)
+		{
+			UpdateController.Instance.DeregisterUpdateableObject(this);
 		}
 	}
 
 	public void AimAtTarget()
 	{
+		distanceToTarget = Vector3.Distance(bodyTransform.position, Target.position);
 		Vector3 dirToTarget = (Target.position - bodyTransform.position).normalized;
 		dirToTarget.y = 0f;
 		Quaternion rotationToTarget = Quaternion.LookRotation(dirToTarget, Vector3.up);
 		bodyTransform.rotation = Quaternion.RotateTowards(bodyTransform.rotation, rotationToTarget, 30f * Time.deltaTime);
-		bodyTransform.localRotation = ClampRotationAroundYAxis(bodyTransform.localRotation);
+		//bodyTransform.localRotation = ClampRotationAroundYAxis(bodyTransform.localRotation);
 
 		float t = Mathf.InverseLerp(2f, range, distanceToTarget);
 
