@@ -19,17 +19,18 @@ public class WeaponAimController : MonoBehaviour, IAimable, IUpdateable
 	[SerializeField] private Transform target;
 	
 	private float range = 10;
+	private float distanceToTarget;
+	private Quaternion rotationToTarget;
 
 	public Transform Target
 	{
 		get => target;
-		set
-		{
-			target = value;
-		}
+		set => target = value;
 	}
 
-	private float distanceToTarget;
+	public bool TargetLocked => bodyTransform.rotation == rotationToTarget;
+
+	
 
 	public void Setup(WeaponDataSO data)
 	{
@@ -66,7 +67,7 @@ public class WeaponAimController : MonoBehaviour, IAimable, IUpdateable
 		distanceToTarget = Vector3.Distance(bodyTransform.position, Target.position);
 		Vector3 dirToTarget = (Target.position - bodyTransform.position).normalized;
 		dirToTarget.y = 0f;
-		Quaternion rotationToTarget = Quaternion.LookRotation(dirToTarget, Vector3.up);
+		rotationToTarget = Quaternion.LookRotation(dirToTarget, Vector3.up);
 		bodyTransform.rotation = Quaternion.RotateTowards(bodyTransform.rotation, rotationToTarget, 30f * Time.deltaTime);
 		//bodyTransform.localRotation = ClampRotationAroundYAxis(bodyTransform.localRotation);
 

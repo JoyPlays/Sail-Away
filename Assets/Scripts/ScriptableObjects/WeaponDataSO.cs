@@ -9,6 +9,7 @@ public class WeaponDataSO : ScriptableObject
 	[SerializeField] private float range;
 	[SerializeField] private float accuracy;
 	[SerializeField] private float projectileSpeed;
+	[SerializeField] private float fireRate;
 
 	#endregion
 
@@ -21,6 +22,8 @@ public class WeaponDataSO : ScriptableObject
 	public float Accuracy => accuracy;
 
 	public float ProjectileSpeed => projectileSpeed;
+	
+	public float FireRate => fireRate;
 
 	#endregion
 

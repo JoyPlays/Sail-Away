@@ -23,7 +23,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2602214768577355984}
   - component: {fileID: 1143390828671499241}
-  m_Layer: 0
+  m_Layer: 12
   m_Name: CannonBall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -72,6 +72,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: SM_Prop_CannonBalls_01
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 8379ff625d2011742be9fb60311cd24d, type: 3}
+      propertyPath: m_Layer
+      value: 12
+      objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 8379ff625d2011742be9fb60311cd24d, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -115,6 +119,18 @@ PrefabInstance:
     - target: {fileID: 400000, guid: 8379ff625d2011742be9fb60311cd24d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 8379ff625d2011742be9fb60311cd24d, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 8379ff625d2011742be9fb60311cd24d, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 8379ff625d2011742be9fb60311cd24d, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2300000, guid: 8379ff625d2011742be9fb60311cd24d, type: 3}
       propertyPath: m_Materials.Array.data[0]

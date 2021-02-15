@@ -7,7 +7,10 @@ public class WeaponFacade : MonoBehaviour, IShooter, IUpdateable
 	[SerializeField] private WeaponDataSO weaponData;
 	[SerializeField] private WeaponAimController weaponAimController;
 	[SerializeField] private Transform shootPoint;
+	[SerializeField] private Transform bodyPoint;
 
+	private float nextShootTime = 0;
+	
 	public Transform ShootPoint => shootPoint;
 	
 	private void Start()
@@ -22,10 +25,20 @@ public class WeaponFacade : MonoBehaviour, IShooter, IUpdateable
 	
 	public void OnUpdate(float deltaTime)
 	{
-		if (Input.GetKeyDown(KeyCode.Space))
+		if (weaponAimController.Target)
 		{
-			Shoot();
+			if (Time.time >= nextShootTime && weaponAimController.TargetLocked)
+			{
+				// TODO: Move to separate shootController
+				nextShootTime = Time.time + (1 / weaponData.FireRate);
+				Shoot();
+			}
 		}
+
+		// if (Input.GetKeyDown(KeyCode.Space))
+		// {
+		// 	Shoot();
+		// }
 	}
 
 	public void Shoot()
@@ -34,10 +47,24 @@ public class WeaponFacade : MonoBehaviour, IShooter, IUpdateable
 		
 		if (cannonBallObj.TryGetComponent(out Rigidbody rBody))
 		{
-			rBody.velocity = rBody.transform.forward * 10f;
+			rBody.velocity = GetBallisticVelocityVector(ShootPoint.position, weaponAimController.Target.position);//rBody.transform.forward * 10f;
 		}
 	}
 	
+	private Vector3 GetBallisticVelocityVector(Vector3 source, Vector3 target)
+	{
+		target.y = ShootPoint.position.y;
+		
+		float firingAngle = Vector3.Angle(ShootPoint.forward, bodyPoint.forward);
+		float target_Distance = Vector3.Distance(ShootPoint.position, target) - ShootPoint.position.y;
+		
+		float projectile_Velocity = Mathf.Sqrt(target_Distance * Physics.gravity.magnitude / Mathf.Sin(2 * (firingAngle * Mathf.Deg2Rad)));
+
+
+		return ShootPoint.forward * projectile_Velocity;
+	}
+	
+
 	private void OnDestroy()
 	{
 		if (UpdateController.Instance)

@@ -49,6 +49,7 @@ MonoBehaviour:
   weaponData: {fileID: 11400000, guid: 3d9260ef70aab954e91b464d4b651a10, type: 2}
   weaponAimController: {fileID: 8885653130508466683}
   shootPoint: {fileID: 4566978176883182724}
+  bodyPoint: {fileID: 4566978175148447549}
 --- !u!114 &8885653130508466683
 MonoBehaviour:
   m_ObjectHideFlags: 0
