@@ -480,7 +480,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4566978176044150566, guid: b5ed0f40c4b68db40b0567be8e33c7d3, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.99
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 4566978176044150566, guid: b5ed0f40c4b68db40b0567be8e33c7d3, type: 3}
       propertyPath: m_LocalPosition.y
@@ -704,4 +704,7 @@ MonoBehaviour:
   pools:
   - tag: Cannonball
     prefab: {fileID: 2602214768577355985, guid: d5e77eaab9e06834abcf1ab800190ca1, type: 3}
+    size: 20
+  - tag: Explosion
+    prefab: {fileID: 2433282508537954060, guid: 5df98cbb7e8f64e47bf7f8ebfcc1331b, type: 3}
     size: 20

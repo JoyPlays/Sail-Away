@@ -17,7 +17,8 @@ public class WeaponAimController : MonoBehaviour, IAimable, IUpdateable
 	
 	
 	[SerializeField] private Transform target;
-	
+
+	private float minShootAngle = 5f;
 	private float range = 10;
 	private float distanceToTarget;
 	private Quaternion rotationToTarget;
@@ -28,9 +29,18 @@ public class WeaponAimController : MonoBehaviour, IAimable, IUpdateable
 		set => target = value;
 	}
 
-	public bool TargetLocked => bodyTransform.rotation == rotationToTarget;
+	public bool TargetLocked
+	{
+		get
+		{
+			Vector3 direction = (Target.position - bodyTransform.position).normalized;
+			float dot = Vector3.Dot(bodyTransform.forward, direction);
+			float cos = Mathf.Cos(minShootAngle * Mathf.Deg2Rad);
+			return dot > cos;
+		}
+	}
 
-	
+
 
 	public void Setup(WeaponDataSO data)
 	{
@@ -83,6 +93,7 @@ public class WeaponAimController : MonoBehaviour, IAimable, IUpdateable
 		Gizmos.DrawWireSphere(transform.position, range);
 	}
 	
+	[Obsolete]
 	Quaternion ClampRotationAroundYAxis(Quaternion q)
 	{
 		q.x /= q.w;

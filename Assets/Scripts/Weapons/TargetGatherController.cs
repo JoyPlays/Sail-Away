@@ -71,7 +71,7 @@ public class TargetGatherController : MonoBehaviour, IUpdateable
 		{
 			Vector3 dir = (targetsInRange[i].position - transform.position).normalized;
 			float dot = Vector3.Dot(transform.forward, dir);
-			float cos = Mathf.Cos(angle * Mathf.Deg2Rad);
+			float cos = Mathf.Cos(angle / 2f * Mathf.Deg2Rad);
 			if (dot > cos)
 			{
 				if (!targetsInCone.Contains(targetsInRange[i]))

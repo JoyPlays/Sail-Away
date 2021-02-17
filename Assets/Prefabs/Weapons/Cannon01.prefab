@@ -46,6 +46,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f8df58b250d7c74a918ce99443dbba2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spreadCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: -0.18574212
+      outSlope: -0.18574212
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0.2023988
+    - serializedVersion: 3
+      time: 0.6106189
+      value: 0.2607174
+      inSlope: 1.3313714
+      outSlope: 1.3313714
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0
+      outWeight: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
   weaponData: {fileID: 11400000, guid: 3d9260ef70aab954e91b464d4b651a10, type: 2}
   weaponAimController: {fileID: 8885653130508466683}
   shootPoint: {fileID: 4566978176883182724}

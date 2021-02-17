@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class WeaponFacade : MonoBehaviour, IShooter, IUpdateable
 {
+	[SerializeField] private AnimationCurve spreadCurve = AnimationCurve.Linear(0f,0f, 1f, 1f);
 	[SerializeField] private WeaponDataSO weaponData;
 	[SerializeField] private WeaponAimController weaponAimController;
 	[SerializeField] private Transform shootPoint;
 	[SerializeField] private Transform bodyPoint;
 
 	private float nextShootTime = 0;
+	private float maxSpread = 5;
 	
 	public Transform ShootPoint => shootPoint;
 	
@@ -34,11 +36,7 @@ public class WeaponFacade : MonoBehaviour, IShooter, IUpdateable
 				Shoot();
 			}
 		}
-
-		// if (Input.GetKeyDown(KeyCode.Space))
-		// {
-		// 	Shoot();
-		// }
+		
 	}
 
 	public void Shoot()
@@ -47,16 +45,24 @@ public class WeaponFacade : MonoBehaviour, IShooter, IUpdateable
 		
 		if (cannonBallObj.TryGetComponent(out Rigidbody rBody))
 		{
-			rBody.velocity = GetBallisticVelocityVector(ShootPoint.position, weaponAimController.Target.position);//rBody.transform.forward * 10f;
+			rBody.velocity = GetBallisticVelocityVector(weaponAimController.Target.position);
 		}
 	}
 	
-	private Vector3 GetBallisticVelocityVector(Vector3 source, Vector3 target)
+	private Vector3 GetBallisticVelocityVector(Vector3 target)
 	{
+		float originalDistance = Vector3.Distance(target, ShootPoint.position);
+		float t = Mathf.InverseLerp(2f, weaponData.Range, originalDistance);
+
+		float spreadValue = Mathf.Lerp(0, maxSpread, spreadCurve.Evaluate(t));
+		float spread = Random.Range(-spreadValue, spreadValue);
+		
+		Vector3 direction = (target - ShootPoint.position).normalized;
+		target += direction * spread;
 		target.y = ShootPoint.position.y;
 		
 		float firingAngle = Vector3.Angle(ShootPoint.forward, bodyPoint.forward);
-		float target_Distance = Vector3.Distance(ShootPoint.position, target) - ShootPoint.position.y;
+		float target_Distance = Vector3.Distance(target, ShootPoint.position) - ShootPoint.position.y;
 		
 		float projectile_Velocity = Mathf.Sqrt(target_Distance * Physics.gravity.magnitude / Mathf.Sin(2 * (firingAngle * Mathf.Deg2Rad)));
 
