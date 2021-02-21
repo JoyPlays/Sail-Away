@@ -17,6 +17,7 @@ public class WeaponFacade : MonoBehaviour, IShooter, IUpdateable
 	
 	private void Start()
 	{
+		maxSpread = weaponData.MaxSpread;
 		weaponAimController.Setup(weaponData);
 		
 		if (UpdateController.Instance)

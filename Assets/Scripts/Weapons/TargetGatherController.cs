@@ -12,7 +12,7 @@ public class TargetGatherController : MonoBehaviour, IUpdateable
 	[SerializeField] private WeaponAimController aimController;
 	[SerializeField] private SphereCollider sphereCollider;
 
-	private float angle = 90f;
+	private float angle = 90f; // Need to think about this one, is it weapon or ship slot related;
 
 	#endregion
 	

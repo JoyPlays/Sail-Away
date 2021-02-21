@@ -19,7 +19,7 @@ public class WeaponAimController : MonoBehaviour, IAimable, IUpdateable
 	[SerializeField] private Transform target;
 
 	private float minShootAngle = 5f;
-	private float range = 10;
+	private float radius = 10;
 	private float distanceToTarget;
 	private Quaternion rotationToTarget;
 
@@ -44,7 +44,7 @@ public class WeaponAimController : MonoBehaviour, IAimable, IUpdateable
 
 	public void Setup(WeaponDataSO data)
 	{
-		range = data.Range * 2f;
+		radius = data.Range * 2f;
 		targetGatherController.Setup(data);
 	}
 
@@ -81,7 +81,7 @@ public class WeaponAimController : MonoBehaviour, IAimable, IUpdateable
 		bodyTransform.rotation = Quaternion.RotateTowards(bodyTransform.rotation, rotationToTarget, 30f * Time.deltaTime);
 		//bodyTransform.localRotation = ClampRotationAroundYAxis(bodyTransform.localRotation);
 
-		float t = Mathf.InverseLerp(2f, range, distanceToTarget);
+		float t = Mathf.InverseLerp(2f, radius, distanceToTarget);
 
 		Vector3 barrelRotation = Vector3.Lerp(minBarrelRot, maxBarrelRot, barrelAimCurve.Evaluate(t));
 		barrelTransform.localRotation = Quaternion.RotateTowards(barrelTransform.localRotation, Quaternion.Euler(barrelRotation), 10f * Time.deltaTime);
@@ -90,7 +90,7 @@ public class WeaponAimController : MonoBehaviour, IAimable, IUpdateable
 	void OnDrawGizmos()
 	{
 		Gizmos.color = new Color(0f, 0.8f, 0.2f, 0.9f);
-		Gizmos.DrawWireSphere(transform.position, range);
+		Gizmos.DrawWireSphere(transform.position, radius);
 	}
 	
 	[Obsolete]
