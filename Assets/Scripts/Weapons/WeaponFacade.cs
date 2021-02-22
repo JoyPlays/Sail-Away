@@ -28,7 +28,7 @@ public class WeaponFacade : MonoBehaviour, IShooter, IUpdateable
 	
 	public void OnUpdate(float deltaTime)
 	{
-		if (weaponAimController.Target)
+		if (weaponAimController.Target != null)
 		{
 			if (Time.time >= nextShootTime && weaponAimController.TargetLocked)
 			{
@@ -46,7 +46,7 @@ public class WeaponFacade : MonoBehaviour, IShooter, IUpdateable
 		
 		if (cannonBallObj.TryGetComponent(out Rigidbody rBody))
 		{
-			rBody.velocity = GetBallisticVelocityVector(weaponAimController.Target.position);
+			rBody.velocity = GetBallisticVelocityVector(weaponAimController.Target.Transform.position);
 		}
 	}
 	

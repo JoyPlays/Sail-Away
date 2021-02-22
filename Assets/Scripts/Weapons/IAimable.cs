@@ -4,7 +4,5 @@ using UnityEngine;
 
 public interface IAimable
 {
-	Transform Target { get; }
-
 	void AimAtTarget();
 }

@@ -16,14 +16,14 @@ public class WeaponAimController : MonoBehaviour, IAimable, IUpdateable
 	[SerializeField] private Transform barrelTransform;
 	
 	
-	[SerializeField] private Transform target;
+	[SerializeField] private ITargetable target;
 
 	private float minShootAngle = 5f;
 	private float radius = 10;
 	private float distanceToTarget;
 	private Quaternion rotationToTarget;
 
-	public Transform Target
+	public ITargetable Target
 	{
 		get => target;
 		set => target = value;
@@ -33,7 +33,7 @@ public class WeaponAimController : MonoBehaviour, IAimable, IUpdateable
 	{
 		get
 		{
-			Vector3 direction = (Target.position - bodyTransform.position).normalized;
+			Vector3 direction = (Target.Transform.position - bodyTransform.position).normalized;
 			float dot = Vector3.Dot(bodyTransform.forward, direction);
 			float cos = Mathf.Cos(minShootAngle * Mathf.Deg2Rad);
 			return dot > cos;
@@ -58,7 +58,7 @@ public class WeaponAimController : MonoBehaviour, IAimable, IUpdateable
 	
 	public void OnUpdate(float deltaTime)
 	{
-		if (Target)
+		if (Target != null)
 		{
 			AimAtTarget();
 		}
@@ -74,8 +74,8 @@ public class WeaponAimController : MonoBehaviour, IAimable, IUpdateable
 
 	public void AimAtTarget()
 	{
-		distanceToTarget = Vector3.Distance(bodyTransform.position, Target.position);
-		Vector3 dirToTarget = (Target.position - bodyTransform.position).normalized;
+		distanceToTarget = Vector3.Distance(bodyTransform.position, Target.Transform.position);
+		Vector3 dirToTarget = (Target.Transform.position - bodyTransform.position).normalized;
 		dirToTarget.y = 0f;
 		rotationToTarget = Quaternion.LookRotation(dirToTarget, Vector3.up);
 		bodyTransform.rotation = Quaternion.RotateTowards(bodyTransform.rotation, rotationToTarget, 30f * Time.deltaTime);

@@ -18,8 +18,8 @@ public class TargetGatherController : MonoBehaviour, IUpdateable
 	
 	#region Properties
 	
-	public List<Transform> targetsInRange { get; private set; } = new List<Transform>();
-	public List<Transform> targetsInCone { get; private set; } = new List<Transform>();
+	public List<ITargetable> targetsInRange { get; private set; } = new List<ITargetable>();
+	public List<ITargetable> targetsInCone { get; private set; } = new List<ITargetable>();
 	
 	#endregion
 
@@ -30,25 +30,61 @@ public class TargetGatherController : MonoBehaviour, IUpdateable
 
 	private void OnTriggerEnter(Collider other)
 	{
-		if (!targetsInRange.Contains(other.transform))
+		ITargetable targetable = null;
+		if (other.attachedRigidbody)
 		{
-			targetsInRange.Add(other.transform);
+			targetable = other.attachedRigidbody.GetComponentInChildren<ITargetable>();
+		}
+		else
+		{
+			targetable = other.GetComponentInChildren<ITargetable>();
+		}
+
+		if (targetable != null)
+		{
+			AddTargetToList(targetable);
 		}
 	}
 	
 	private void OnTriggerExit(Collider other)
 	{
-		if (targetsInRange.Contains(other.transform))
+		ITargetable targetable = null;
+		if (other.attachedRigidbody)
 		{
-			targetsInRange.Remove(other.transform);
+			targetable = other.attachedRigidbody.GetComponentInChildren<ITargetable>();
+		}
+		else
+		{
+			targetable = other.GetComponentInChildren<ITargetable>();
 		}
 		
-		if (targetsInCone.Contains(other.transform))
+		if (targetable != null)
 		{
-			targetsInCone.Remove(other.transform);
+			RemoveTargetFromList(targetable);
+		}
+	}
+
+	private void AddTargetToList(ITargetable targetable)
+	{
+		if (!targetsInRange.Contains(targetable))
+		{
+			targetsInRange.Add(targetable);
+		}
+	}
+
+	private void RemoveTargetFromList(ITargetable targetable)
+	{
+		if (targetsInRange.Contains(targetable))
+		{
+			targetsInRange.Remove(targetable);
 		}
 		
-		if (aimController.Target == other.transform)
+		if (targetsInCone.Contains(targetable))
+		{
+			targetsInCone.Remove(targetable);
+		}
+		
+		if (aimController.Target == targetable)
 		{
 			aimController.Target = null;
 			TryGetTargetFormList();
@@ -69,7 +105,7 @@ public class TargetGatherController : MonoBehaviour, IUpdateable
 		
 		for (int i = 0; i < targetsInRange.Count; i++) 
 		{
-			Vector3 dir = (targetsInRange[i].position - transform.position).normalized;
+			Vector3 dir = (targetsInRange[i].Transform.position - transform.position).normalized;
 			float dot = Vector3.Dot(transform.forward, dir);
 			float cos = Mathf.Cos(angle / 2f * Mathf.Deg2Rad);
 			if (dot > cos)
@@ -78,7 +114,7 @@ public class TargetGatherController : MonoBehaviour, IUpdateable
 				{
 					targetsInCone.Add(targetsInRange[i]);
 
-					if (!aimController.Target)
+					if (aimController.Target == null)
 					{
 						TryGetTargetFormList();
 					}
@@ -110,7 +146,7 @@ public class TargetGatherController : MonoBehaviour, IUpdateable
 	
 	public void TryGetTargetFormList()
 	{
-		targetsInCone = targetsInCone.OrderBy(x => Vector3.Distance(x.position, transform.position)).ToList();
+		targetsInCone = targetsInCone.OrderBy(x => Vector3.Distance(x.Transform.position, transform.position)).ToList();
 
 		foreach (var target in targetsInCone)
 		{
