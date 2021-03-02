@@ -43,6 +43,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b29b3932f24d64a49b7e36dc3775cb68, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rightBound: 3.8
+  leftBound: 3.8
+  forwardBound: 12
+  backBound: 10
 --- !u!1 &2128317712224730448
 GameObject:
   m_ObjectHideFlags: 0

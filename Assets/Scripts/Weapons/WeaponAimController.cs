@@ -33,6 +33,7 @@ public class WeaponAimController : MonoBehaviour, IAimable, IUpdateable
 	{
 		get
 		{
+			return true;
 			Vector3 direction = (Target.Transform.position - bodyTransform.position).normalized;
 			float dot = Vector3.Dot(bodyTransform.forward, direction);
 			float cos = Mathf.Cos(minShootAngle * Mathf.Deg2Rad);
@@ -79,7 +80,7 @@ public class WeaponAimController : MonoBehaviour, IAimable, IUpdateable
 		dirToTarget.y = 0f;
 		rotationToTarget = Quaternion.LookRotation(dirToTarget, Vector3.up);
 		bodyTransform.rotation = Quaternion.RotateTowards(bodyTransform.rotation, rotationToTarget, 30f * Time.deltaTime);
-		//bodyTransform.localRotation = ClampRotationAroundYAxis(bodyTransform.localRotation);
+		bodyTransform.localRotation = ClampRotationAroundYAxis(bodyTransform.localRotation);
 
 		float t = Mathf.InverseLerp(2f, radius, distanceToTarget);
 
@@ -102,7 +103,7 @@ public class WeaponAimController : MonoBehaviour, IAimable, IUpdateable
 		q.w = 1.0f;
  
 		float angleY = 2.0f * Mathf.Rad2Deg * Mathf.Atan (q.y);
-		angleY = Mathf.Clamp (angleY, -30f, 30f);
+		angleY = Mathf.Clamp (angleY, -45f, 45f);
 		q.y = Mathf.Tan (0.5f * Mathf.Deg2Rad * angleY);
  
 		return q;

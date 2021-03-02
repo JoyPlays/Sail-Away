@@ -14,12 +14,14 @@ public class TargetGatherController : MonoBehaviour, IUpdateable
 
 	private float angle = 90f; // Need to think about this one, is it weapon or ship slot related;
 
+	private int frames;
+
 	#endregion
 	
 	#region Properties
 	
-	public List<ITargetable> targetsInRange { get; private set; } = new List<ITargetable>();
-	public List<ITargetable> targetsInCone { get; private set; } = new List<ITargetable>();
+	public List<TargetEnemy> targetsInRange { get; private set; } = new List<TargetEnemy>();
+	public List<TargetEnemy> targetsInCone { get; private set; } = new List<TargetEnemy>();
 	
 	#endregion
 
@@ -30,14 +32,14 @@ public class TargetGatherController : MonoBehaviour, IUpdateable
 
 	private void OnTriggerEnter(Collider other)
 	{
-		ITargetable targetable = null;
+		TargetEnemy targetable = null;
 		if (other.attachedRigidbody)
 		{
-			targetable = other.attachedRigidbody.GetComponentInChildren<ITargetable>();
+			targetable = other.attachedRigidbody.GetComponentInChildren<TargetEnemy>();
 		}
 		else
 		{
-			targetable = other.GetComponentInChildren<ITargetable>();
+			targetable = other.GetComponentInChildren<TargetEnemy>();
 		}
 
 		if (targetable != null)
@@ -48,14 +50,14 @@ public class TargetGatherController : MonoBehaviour, IUpdateable
 	
 	private void OnTriggerExit(Collider other)
 	{
-		ITargetable targetable = null;
+		TargetEnemy targetable = null;
 		if (other.attachedRigidbody)
 		{
-			targetable = other.attachedRigidbody.GetComponentInChildren<ITargetable>();
+			targetable = other.attachedRigidbody.GetComponentInChildren<TargetEnemy>();
 		}
 		else
 		{
-			targetable = other.GetComponentInChildren<ITargetable>();
+			targetable = other.GetComponentInChildren<TargetEnemy>();
 		}
 		
 		if (targetable != null)
@@ -64,7 +66,7 @@ public class TargetGatherController : MonoBehaviour, IUpdateable
 		}
 	}
 
-	private void AddTargetToList(ITargetable targetable)
+	private void AddTargetToList(TargetEnemy targetable)
 	{
 		if (!targetsInRange.Contains(targetable))
 		{
@@ -72,7 +74,7 @@ public class TargetGatherController : MonoBehaviour, IUpdateable
 		}
 	}
 
-	private void RemoveTargetFromList(ITargetable targetable)
+	private void RemoveTargetFromList(TargetEnemy targetable)
 	{
 		if (targetsInRange.Contains(targetable))
 		{
@@ -101,39 +103,65 @@ public class TargetGatherController : MonoBehaviour, IUpdateable
 	
 	public void OnUpdate(float deltaTime)
 	{
-		//TODO: add something to not calculate every frame
-		
-		for (int i = 0; i < targetsInRange.Count; i++) 
+		frames++;
+		if (frames % 3 == 0)
 		{
-			Vector3 dir = (targetsInRange[i].Transform.position - transform.position).normalized;
-			float dot = Vector3.Dot(transform.forward, dir);
-			float cos = Mathf.Cos(angle / 2f * Mathf.Deg2Rad);
-			if (dot > cos)
+			for (int i = 0; i < targetsInRange.Count; i++)
 			{
-				if (!targetsInCone.Contains(targetsInRange[i]))
+				
+				bool inCone = AnyBoundInsideCone(targetsInRange[i]);
+				
+				if (inCone)
 				{
-					targetsInCone.Add(targetsInRange[i]);
-
-					if (aimController.Target == null)
+					if (!targetsInCone.Contains(targetsInRange[i]))
 					{
+						targetsInCone.Add(targetsInRange[i]);
+
+						if (aimController.Target == null)
+						{
+							TryGetTargetFormList();
+						}
+					}
+				}
+				else
+				{
+					if (targetsInCone.Contains(targetsInRange[i]))
+					{
+						targetsInCone.Remove(targetsInRange[i]);
+					}
+
+					if (aimController.Target == targetsInRange[i])
+					{
+						aimController.Target = null;
 						TryGetTargetFormList();
 					}
 				}
 			}
-			else
+		}
+	}
+
+	private bool AnyBoundInsideCone(TargetEnemy target)
+	{
+		List<Vector3> bounds = target.GetBoundsList();
+
+		foreach (var bound in bounds)
+		{
+			Vector3 dir = (bound - transform.position).normalized;
+			float dot = Vector3.Dot(transform.forward, dir);
+			float cos = Mathf.Cos(angle / 2f * Mathf.Deg2Rad);
+			
+			if (dot > cos)
 			{
-				if (targetsInCone.Contains(targetsInRange[i]))
-				{
-					targetsInCone.Remove(targetsInRange[i]);
-				}
-				
-				if (aimController.Target == targetsInRange[i])
-				{
-					aimController.Target = null;
-					TryGetTargetFormList();
-				}
+				return true;
 			}
 		}
+		
+		return false;
+		
+		// Vector3 dir = (target.Transform.position - transform.position).normalized;
+		// float dot = Vector3.Dot(transform.forward, dir);
+		// float cos = Mathf.Cos(angle / 2f * Mathf.Deg2Rad);
+		//return dot > cos;
 	}
 
 	private void OnDestroy()
