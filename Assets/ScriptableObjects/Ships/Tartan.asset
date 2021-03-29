@@ -1,0 +1,16 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 888fb5fd1056bc0498b0af4124184ab0, type: 3}
+  m_Name: Tartan
+  m_EditorClassIdentifier: 
+  shipPrefab: {fileID: 2161575779392164197, guid: e6935553a9c737842a66f86d75dd3944, type: 3}
+  shipAttributes: {fileID: 11400000, guid: fa110dc6c49ca144a96c1b2281b8115b, type: 2}
