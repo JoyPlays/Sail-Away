@@ -9,12 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3da84dcbeb9e9cf4a876a6bfc5c3030a, type: 3}
-  m_Name: TartanAttributes
+  m_Script: {fileID: 11500000, guid: 888fb5fd1056bc0498b0af4124184ab0, type: 3}
+  m_Name: Sloop
   m_EditorClassIdentifier: 
-  shipName: Tartan
-  cargoHold: 20
-  turnRate: 40
-  speed: 10
-  hitPoint: 100
-  viewRange: 50
+  shipPrefab: {fileID: 4392780293620808526, guid: 295acb9ade01b634da380d2ddd95ce18, type: 3}
+  shipAttributes: {fileID: 11400000, guid: 997efcacef4b9c04cb0cb9860f915b52, type: 2}

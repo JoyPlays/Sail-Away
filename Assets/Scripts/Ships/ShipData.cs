@@ -7,4 +7,7 @@ public class ShipData : ScriptableObject
 {
 	[SerializeField] private ShipFacade shipPrefab;
 	[SerializeField] private ShipAttributes shipAttributes;
+
+	public ShipFacade ShipPrefab => shipPrefab;
+	public ShipAttributes ShipAttributes => shipAttributes;
 }

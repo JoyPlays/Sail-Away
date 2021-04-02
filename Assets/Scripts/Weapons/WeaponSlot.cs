@@ -6,25 +6,13 @@ public class WeaponSlot : MonoBehaviour
 {
 	#region Fields
 	
-	private Transform _transform;
+	private WeaponType slotType;
 	
 	#endregion
 	
     #region Properties
 
-	public Transform Transform
-	{
-		get
-		{
-			if (!_transform)
-			{
-				_transform = transform;
-			}
-
-			return _transform;
-		}
-		set => _transform = value;
-	}
+	public WeaponType SlotType => slotType;
 
 	#endregion
 }

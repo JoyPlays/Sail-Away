@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1648092942119848994}
   - component: {fileID: 494730785910559974}
   - component: {fileID: 6857707930836821953}
+  - component: {fileID: 8502397926091899118}
   m_Layer: 0
   m_Name: PlayerPirate
   m_TagString: Untagged
@@ -112,6 +113,24 @@ MonoBehaviour:
   slowWhenNotFacingTarget: 1
   whenCloseToDestination: 0
   constrainInsideGraph: 0
+--- !u!114 &8502397926091899118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 836289999120296707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e2c0a9ba8e7478d4d92f3160b404ca26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  shipContainer: {fileID: 6806083054668106262}
+  aiPath: {fileID: 6857707930836821953}
+  debugShipList:
+  - {fileID: 11400000, guid: 3c2c62b7d04d37746b81405a4bcf6a57, type: 2}
+  - {fileID: 11400000, guid: c98f4ac2210b54740bbb7315a46a23e2, type: 2}
+  - {fileID: 11400000, guid: 5e638ece1ea6c724da5966615914c684, type: 2}
 --- !u!1 &2414088017958788558
 GameObject:
   m_ObjectHideFlags: 0

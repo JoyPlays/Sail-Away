@@ -4,7 +4,5 @@ using UnityEngine;
 
 public class WeaponSlotController : MonoBehaviour
 {
-	[SerializeField] private WeaponSlot[] weaponPoint;
-	
-	
+	[SerializeField] private WeaponSlot[] weaponSlots;
 }

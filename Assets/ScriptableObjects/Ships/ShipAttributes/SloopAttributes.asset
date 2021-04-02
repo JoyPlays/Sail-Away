@@ -10,11 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3da84dcbeb9e9cf4a876a6bfc5c3030a, type: 3}
-  m_Name: TartanAttributes
+  m_Name: SloopAttributes
   m_EditorClassIdentifier: 
-  shipName: Tartan
-  cargoHold: 20
-  turnRate: 40
-  speed: 10
-  hitPoint: 100
-  viewRange: 50
+  shipName: Sloop
+  cargoHold: 30
+  turnRate: 30
+  speed: 8
+  hitPoint: 150
+  viewRange: 75

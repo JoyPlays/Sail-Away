@@ -700,8 +700,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c01918db03280244da79a9df8aae5494, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  weaponPoint:
+  weaponSlots:
   - {fileID: 1718835836666606502}
+  - {fileID: 5295374346049276898}
+  - {fileID: 5341419217721212384}
 --- !u!1 &6342088306473329654
 GameObject:
   m_ObjectHideFlags: 0
@@ -747,6 +749,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4a89fc692dae27946b9327bd453dc577, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weaponSlotController: {fileID: 540266895879291963}
 --- !u!1 &6342088308504823619
 GameObject:
   m_ObjectHideFlags: 0
