@@ -404,6 +404,10 @@ PrefabInstance:
       propertyPath: target
       value: 
       objectReference: {fileID: 628577028}
+    - target: {fileID: 494730785910559974, guid: 5894231eeecbf3f45b24c4a504dec8bf, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 836289999120296706, guid: 5894231eeecbf3f45b24c4a504dec8bf, type: 3}
       propertyPath: m_LocalPosition.x
       value: -1.3
@@ -452,10 +456,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerPirate
       objectReference: {fileID: 0}
-    - target: {fileID: 8502397926091899118, guid: 5894231eeecbf3f45b24c4a504dec8bf, type: 3}
-      propertyPath: debugShipData
-      value: 
-      objectReference: {fileID: 11400000, guid: c98f4ac2210b54740bbb7315a46a23e2, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5894231eeecbf3f45b24c4a504dec8bf, type: 3}
 --- !u!1 &390907521
@@ -532,7 +532,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 628577027}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 221, y: 0, z: 220.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 199548748}
@@ -920,7 +920,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   version: 1
   data:
-    dataString: UEsDBBQAAAgIAAAQIez42r4zQgIAAPEEAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGFVMty2jAU/RVG67YDFJdJd60hpAsCE5rJxhshXdsaZMmjR3gN/94r2WCHLLqy5pxzr859yGcilK2BOW0WRvCl5kB+Dkg4ky+DjnyCAy202ogTXDVvgrsyiGjUvFAnNOKjEGZ1Bc4I9ksVMoiHCHolcm2qOS8g1dZZhHMqLSBltAvRCqHzgBzagGP7PYXv4IInBsqB+Z/KKyZpVQMPbjvxdHKV4ykKFVbSasaBY1pKYVsfxB3rWGdKa+uxChRwQbGu6CCUWYIoShei+8GrPLfgWleGHmfCYHuarOS3bnpWUbtrrL1T6aOD5Ec01SRdfuan48jnRldP14tHw3CJKwXbvdAjo9b1utqHZx+de7Wncke3Et5KUM96YbRXHElnfAj1FsazXqpbcWkJbNfpGrN3oK8/T2jUTegSyz+kUlTbgHybNMBG6tjwhxADBmfzBw3HvbBtJkSDiVcLf2nRX6CWeBTGOqTaC1Vwt9XeBCmZx56FYrxLtVEQ4dZzDYpKd1xjGnc/wzuud+0d80jDU2kvb7nrC7gLiXCnHw7vqLXe34ZlS71fgi1X3kmhoDMdiGfsU6qValas35Nr2MabnLJeWOEF/7hbhI2TB86m8LBlwzGMp18ZT/IkGQ3zBBibsO8k7p5QWCeV68Zo2x6cmuqSK9yz6x9ksDC0juvODd0vxKnSvZYLlesNMwBq1WS4GQeDl+C75HMusEEbcE6oOG9yzojUbAc8uyXKYqXzgzM067JkpBbv2gUkI2n8b2TkQi7/AFBLAwQUAAAICAAAECHsJeZKvG0AAAB4AAAACQAkAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAatWKkstKs7Mz1OyUjDRM9IzNNVRUEovSizIKAaKGII4pZkpIHa0UrKRqWVKsnmqZVKygVGqkblucoppmqmpoUGaaWpyskmysVIsUH1JZUGqX2JuKkRPQGJJRlpmXkpmXrqee1FmijvIaKXYWgBQSwECLQAUAAAICAAAECHs+Nq+M0ICAADxBAAACwAkAAAAAAAAAAAAAAAAAAAAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwECLQAUAAAICAAAECHsJeZKvG0AAAB4AAAACQAkAAAAAAAAAAAAAACPAgAAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsFBgAAAAACAAIAuAAAAEcDAAAAAA==
+    dataString: UEsDBBQAAAgIAAAQIezPWKIxQgIAAPQEAAALACQAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQGFVMuS2jAQ/BVK5yQFDoQit8SwbA4s1JLUXnwR0hirkCWXHsur+PeMZIMd7yEnq7p7Rj0P+UqEshUwp83SCL7SHMj3AQln8mnQks9wonuttuICd82b4K4IIho1r9QJjfgohFldgjOC/VB7GcRDBL0SuTblgu8h1dZZhHMqLSBltAvRCqHrgJyagHPzvYTv4IYnBsqB+Z/KKyZpWQEPblvxdHyX4ykKFVbSaJLAMS2lsI0P4s5VrDOllfVYBQq4oFhXdDAKAQWIfeFCeDd6necWXGPL0PNcGOxPnZb81HXTSmoPtbd3Kn20MPkWXdVJVx/5aRL53Ojy+X7xaBgucYVgh1d6ZtS6Tlu78LxjPfboSOWB7iS8FaBe9NJorziSzvgQ6i0k806qR3FpAezQ6mqzPdBXH0c0akd0i+WfUinKXUC+jGtgK3Xs+CzEgMHh/ELDcTFskwnRYOKPhd90392ghngSxjqkmgtVcLfT3gQpWcSehWK8S7VREOHGcwWKSnfeYBrXn2GP61zbY55oeCvN5Q13fwK9kAi3+uGwR2308TEsW+jjCmyx9k4K1U0WmBdsVKqVqnfM9tgQt/Ump6wbt/eC/7tdhCWTGWdTmO3YMIFk+pnxST6ZjIb5BBgbs68kbp9QWCmVm9pq0yCcm2pbqXDT7j+RwdLQKi48N/S4FJdSd5ouVK63zACodZ3h4RwMXoJPky+4wBZtwTmh4sTJNSNSswPw7JEoi6UuTs7QrM2SkUq8axeQjKTx15GRG7n9BVBLAwQUAAAICAAAECHsJeZKvG0AAAB4AAAACQAkAG1ldGEuanNvbgoAIAAAAAAAAQAYAACAPtXesZ0BAIA+1d6xnQEAgD7V3rGdAatWKkstKs7Mz1OyUjDRM9IzNNVRUEovSizIKAaKGII4pZkpIHa0UrKRqWVKsnmqZVKygVGqkblucoppmqmpoUGaaWpyskmysVIsUH1JZUGqX2JuKkRPQGJJRlpmXkpmXrqee1FmijvIaKXYWgBQSwECLQAUAAAICAAAECHsz1iiMUICAAD0BAAACwAkAAAAAAAAAAAAAAAAAAAAZ3JhcGgwLmpzb24KACAAAAAAAAEAGAAAgD7V3rGdAQCAPtXesZ0BAIA+1d6xnQFQSwECLQAUAAAICAAAECHsJeZKvG0AAAB4AAAACQAkAAAAAAAAAAAAAACPAgAAbWV0YS5qc29uCgAgAAAAAAABABgAAIA+1d6xnQEAgD7V3rGdAQCAPtXesZ0BUEsFBgAAAAACAAIAuAAAAEcDAAAAAA==
     upgradeData: 
     file_cachedStartup: {fileID: 0}
     data_cachedStartup: 
@@ -1121,6 +1121,10 @@ PrefabInstance:
     - target: {fileID: 7556079781986617591, guid: a060f808b0bfb284e8eb1b253f5d02a0, type: 3}
       propertyPath: m_Name
       value: TempEnemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 7556079781986617591, guid: a060f808b0bfb284e8eb1b253f5d02a0, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a060f808b0bfb284e8eb1b253f5d02a0, type: 3}

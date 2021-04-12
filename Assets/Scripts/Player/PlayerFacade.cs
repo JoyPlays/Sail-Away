@@ -11,9 +11,9 @@ public class PlayerFacade : MonoBehaviour, IShipLoader
 	[SerializeField] private AIPath aiPath;
 
 	public int CurrentHitPoints { get; private set; }	//Temp
-	public int MaxHitPoints { get; private set; }	//Temp
-	public int CargoHold { get; private set; }		//Temp
-	public int ViewRange { get; private set; }		//Temp
+	public int MaxHitPoints { get; private set; }		//Temp
+	public int CargoHold { get; private set; }			//Temp
+	public int ViewRange { get; private set; }			//Temp
 
 	private void Start()
 	{
