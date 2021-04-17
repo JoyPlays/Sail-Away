@@ -17,4 +17,4 @@ MonoBehaviour:
   turnRate: 30
   speed: 8
   hitPoint: 150
-  viewRange: 75
+  viewRange: 150

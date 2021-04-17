@@ -127,6 +127,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   shipContainer: {fileID: 6806083054668106262}
   aiPath: {fileID: 6857707930836821953}
+  viewRange: {fileID: 11400000, guid: 63c95b00511796345991cf64ace7e450, type: 2}
   debugShipList:
   - {fileID: 11400000, guid: 3c2c62b7d04d37746b81405a4bcf6a57, type: 2}
   - {fileID: 11400000, guid: c98f4ac2210b54740bbb7315a46a23e2, type: 2}

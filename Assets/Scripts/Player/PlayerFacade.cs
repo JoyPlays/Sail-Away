@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Pathfinding;
+using Unistoty.SOVariables;
 using UnityEngine;
 
 public class PlayerFacade : MonoBehaviour, IShipLoader
@@ -9,11 +10,17 @@ public class PlayerFacade : MonoBehaviour, IShipLoader
 	[SerializeField] private Transform shipContainer;
 
 	[SerializeField] private AIPath aiPath;
+	[SerializeField] private IntVariable viewRange;
 
 	public int CurrentHitPoints { get; private set; }	//Temp
 	public int MaxHitPoints { get; private set; }		//Temp
 	public int CargoHold { get; private set; }			//Temp
-	public int ViewRange { get; private set; }			//Temp
+	public int ViewRange
+	{
+		get => viewRange.Value;
+		private set => viewRange.Value = value;
+
+	}
 
 	private void Start()
 	{
