@@ -3,33 +3,31 @@ using System;
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace Unistoty.GameEvents
-{
-	/// <summary>
-	/// A scriptable object that holds a unique game event type.
-	/// </summary>
+/// <summary>
+/// A scriptable object that holds a unique game event type.
+/// </summary>
 #if UNITY_EDITOR
-	[CreateAssetMenu(fileName = "New Event", menuName = "Events/New Event", order = 0)]
+[CreateAssetMenu(fileName = "New Event", menuName = "Events/New Event", order = 0)]
 #endif
-	[Serializable]
-	public class GameEvent : GameEventBase
+[Serializable]
+public class GameEvent : GameEventBase
+{
+	public override Type UnityEventType { get; protected set; } = typeof(UnityEvent);
+
+	#region Raise
+
+	/// <summary>
+	/// Raises the event, notifying all listeners.
+	/// </summary>
+	[Button("Raise"), PropertyOrder(5), DisableInEditorMode, PropertySpace]
+	public void Raise()
 	{
-		public override Type UnityEventType { get; protected set; } = typeof(UnityEvent);
-
-		#region Raise
-
-		/// <summary>
-		/// Raises the event, notifying all listeners.
-		/// </summary>
-		[Button("Raise"), PropertyOrder(5), DisableInEditorMode, PropertySpace]
-		public void Raise()
-		{
 #if dUI_MANAGER
 			RaiseInternal(this.raiseDoozyUIEvent);
 #else
-			RaiseInternal(false);
+		RaiseInternal(false);
 #endif
-		}
+	}
 
 #if dUI_MANAGER
 		/// <summary>
@@ -41,24 +39,23 @@ namespace Unistoty.GameEvents
 		}
 #endif
 
-		private void RaiseInternal(bool raiseDoozyEvent)
+	private void RaiseInternal(bool raiseDoozyEvent)
+	{
+		for (int index = EventListeners.Count - 1; index >= 0; index--)
 		{
-			for (int index = EventListeners.Count - 1; index >= 0; index--)
+			GameEventListener currentListener = eventListeners[index];
+
+			if (currentListener == null)
 			{
-				GameEventListener currentListener = eventListeners[index];
-
-				if (currentListener == null)
-				{
-					eventListeners.RemoveAt(index);
-					continue;
-				}
-
-				currentListener.OnEventRaised(this);
+				eventListeners.RemoveAt(index);
+				continue;
 			}
 
-			OnRaised(raiseDoozyEvent);
+			currentListener.OnEventRaised(this);
 		}
 
-#endregion
+		OnRaised(raiseDoozyEvent);
 	}
+
+	#endregion
 }

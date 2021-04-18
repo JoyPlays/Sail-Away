@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Pathfinding;
-using Unistoty.SOVariables;
+using Sirenix.OdinInspector;
 using UnityEngine;
 
 public class PlayerFacade : MonoBehaviour, IShipLoader
@@ -12,8 +12,9 @@ public class PlayerFacade : MonoBehaviour, IShipLoader
 	[SerializeField] private AIPath aiPath;
 	[SerializeField] private IntVariable viewRange;
 
-	public int CurrentHitPoints { get; private set; }	//Temp
-	public int MaxHitPoints { get; private set; }		//Temp
+	[Title("Components")] 
+	[SerializeField] private PlayerHealth playerHealth;
+
 	public int CargoHold { get; private set; }			//Temp
 	public int ViewRange
 	{
@@ -56,7 +57,7 @@ public class PlayerFacade : MonoBehaviour, IShipLoader
 		aiPath.maxSpeed = attributes.Speed;
 		aiPath.rotationSpeed = attributes.TurnRate;
 
-		MaxHitPoints = CurrentHitPoints = attributes.HitPoints;
+		playerHealth.MaxHitPoints = playerHealth.HitPoints = attributes.HitPoints;
 		CargoHold = attributes.CargoHold;
 		ViewRange = attributes.ViewRange;
 	}

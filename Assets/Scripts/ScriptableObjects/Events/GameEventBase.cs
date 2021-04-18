@@ -3,43 +3,41 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Unistoty.GameEvents
+/// <summary>
+/// A scriptable object that holds a unique game event type.
+/// </summary>
+[Serializable]
+public abstract class GameEventBase : ScriptableObject
 {
+	public abstract Type UnityEventType { get; protected set; }
+
 	/// <summary>
-	/// A scriptable object that holds a unique game event type.
+	/// Name of the event scriptable object.
 	/// </summary>
-	[Serializable]
-	public abstract class GameEventBase : ScriptableObject
-	{
-		public abstract Type UnityEventType { get; protected set; }
+	/// <value>
+	/// Gets the value of the <see cref="Object.Name"/> property.
+	/// </value>
+	public string Name => name;
 
-		/// <summary>
-		/// Name of the event scriptable object.
-		/// </summary>
-		/// <value>
-		/// Gets the value of the <see cref="Object.Name"/> property.
-		/// </value>
-		public string Name => name;
+	/// <summary>
+	/// When set to True, will log each invokation connected to this event.
+	/// </summary>
+	/// <value>
+	/// Gets the value of the boolean field logToConsole.
+	/// </value>       
+	public bool LogToConsole => logToConsole;
 
-		/// <summary>
-		/// When set to True, will log each invokation connected to this event.
-		/// </summary>
-		/// <value>
-		/// Gets the value of the boolean field logToConsole.
-		/// </value>       
-		public bool LogToConsole => logToConsole;
+	/// <summary>
+	/// The list of listeners that this event will notify if it is raised.
+	/// </summary>
+	/// <value>
+	/// Gets the value of the field eventListeners.
+	/// </value>
+	[ShowInInspector, PropertySpace, PropertyOrder(10), HideInEditorMode]
+	[ListDrawerSettings(Expanded = true, NumberOfItemsPerPage = 50)]
+	public List<GameEventListener> EventListeners => eventListeners;
 
-		/// <summary>
-		/// The list of listeners that this event will notify if it is raised.
-		/// </summary>
-		/// <value>
-		/// Gets the value of the field eventListeners.
-		/// </value>
-		[ShowInInspector, PropertySpace, PropertyOrder(10), HideInEditorMode]
-		[ListDrawerSettings(Expanded = true, NumberOfItemsPerPage = 50)]
-		public List<GameEventListener> EventListeners => eventListeners;
-
-		#region Fields
+	#region Fields
 
 #if dUI_MANAGER
 		/// <summary>
@@ -52,98 +50,96 @@ namespace Unistoty.GameEvents
 		private void CopyEventName() => GUIUtility.systemCopyBuffer = this.name;
 #endif
 
-		/// <summary>
-		/// When set to True, will log each invocation connected to this event.
-		/// </summary>
-		[Tooltip("When set to True, will log each invocation connected to this event.")]
-		[SerializeField, Space, PropertyOrder(2)]
-		protected bool logToConsole = true;
+	/// <summary>
+	/// When set to True, will log each invocation connected to this event.
+	/// </summary>
+	[Tooltip("When set to True, will log each invocation connected to this event.")] [SerializeField, Space, PropertyOrder(2)]
+	protected bool logToConsole = true;
 
-		/// <summary>
-		/// The list of listeners that this event will notify if it is raised.
-		/// </summary>
-		[Tooltip("The list of listeners that this event will notify if it is raised.")]
-		protected List<GameEventListener> eventListeners = null;
+	/// <summary>
+	/// The list of listeners that this event will notify if it is raised.
+	/// </summary>
+	[Tooltip("The list of listeners that this event will notify if it is raised.")]
+	protected List<GameEventListener> eventListeners = null;
 
-		#endregion
+	#endregion
 
-		#region Listeners
+	#region Listeners
 
-		/// <summary>
-		/// Registers a new listener.
-		/// </summary>
-		/// <param name="listener">Listener to register.</param>
-		public void RegisterListener(GameEventListener listener)
-		{
-			if (eventListeners == null)
-			{
-				eventListeners = new List<GameEventListener>();
-			}
-
-			if (!eventListeners.Contains(listener))
-			{
-				eventListeners.Add(listener);
-			}
-		}
-
-		/// <summary>
-		/// Unregisters an existing listeners.
-		/// </summary>
-		/// <param name="listener">Listener to unregister.</param>
-		public void UnregisterListener(GameEventListener listener)
-		{
-			if (eventListeners.Contains(listener))
-			{
-				eventListeners[eventListeners.IndexOf(listener)] = null;
-			}
-		}
-
-		#endregion
-
-		private void OnEnable()
+	/// <summary>
+	/// Registers a new listener.
+	/// </summary>
+	/// <param name="listener">Listener to register.</param>
+	public void RegisterListener(GameEventListener listener)
+	{
+		if (eventListeners == null)
 		{
 			eventListeners = new List<GameEventListener>();
 		}
 
-		protected void OnRaised()
+		if (!eventListeners.Contains(listener))
 		{
+			eventListeners.Add(listener);
+		}
+	}
+
+	/// <summary>
+	/// Unregisters an existing listeners.
+	/// </summary>
+	/// <param name="listener">Listener to unregister.</param>
+	public void UnregisterListener(GameEventListener listener)
+	{
+		if (eventListeners.Contains(listener))
+		{
+			eventListeners[eventListeners.IndexOf(listener)] = null;
+		}
+	}
+
+	#endregion
+
+	private void OnEnable()
+	{
+		eventListeners = new List<GameEventListener>();
+	}
+
+	protected void OnRaised()
+	{
 #if dUI_MANAGER
 			OnRaised(this.raiseDoozyUIEvent);
 #else
-			OnRaised(false);
+		OnRaised(false);
 #endif
-		}
+	}
 
-		protected void OnRaised(bool raiseDoozyEvent)
+	protected void OnRaised(bool raiseDoozyEvent)
+	{
+		RaiseDoozyUIEvent(raiseDoozyEvent);
+
+		if (logToConsole && EventListeners.Count == 0)
 		{
-			RaiseDoozyUIEvent(raiseDoozyEvent);
-
-			if (logToConsole && EventListeners.Count == 0)
-			{
-				LogZeroListeners(raiseDoozyEvent);
-			}
+			LogZeroListeners(raiseDoozyEvent);
 		}
+	}
 
-		private void LogZeroListeners(bool doozy)
+	private void LogZeroListeners(bool doozy)
+	{
+		if (doozy)
 		{
-			if (doozy)
-			{
-				Debug.Log($"{name} event was raised for Doozy UI and zero listeners in scene");
-			}
-			else
-			{
-				Debug.Log($"{name} event was raised with zero listeners");
-			}
+			Debug.Log($"{name} event was raised for Doozy UI and zero listeners in scene");
 		}
-
-		private void RaiseDoozyUIEvent(bool raise)
+		else
 		{
+			Debug.Log($"{name} event was raised with zero listeners");
+		}
+	}
+
+	private void RaiseDoozyUIEvent(bool raise)
+	{
 #if dUI_MANAGER
 			if (raise)
 			{
 				Doozy.Engine.Message.Send(new Doozy.Engine.GameEventMessage(this.name));
 			}
 #endif
-		}
 	}
 }
