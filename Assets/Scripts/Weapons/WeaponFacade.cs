@@ -12,7 +12,9 @@ public class WeaponFacade : MonoBehaviour, IShooter, IUpdateable
 
 	private float nextShootTime = 0;
 	private float maxSpread = 5;
-	
+
+
+	public bool Enabled => enabled;
 	public Transform ShootPoint => shootPoint;
 	
 	private void Start()

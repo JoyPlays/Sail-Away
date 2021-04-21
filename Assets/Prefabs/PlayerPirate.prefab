@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 494730785910559974}
   - component: {fileID: 6857707930836821953}
   - component: {fileID: 8502397926091899118}
+  - component: {fileID: 1047559277904188990}
   m_Layer: 0
   m_Name: PlayerPirate
   m_TagString: Untagged
@@ -31,6 +32,7 @@ Transform:
   m_LocalPosition: {x: -1.3, y: 0, z: 40.3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
+  - {fileID: 3109659893413592304}
   - {fileID: 6806083054668106262}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -128,10 +130,24 @@ MonoBehaviour:
   shipContainer: {fileID: 6806083054668106262}
   aiPath: {fileID: 6857707930836821953}
   viewRange: {fileID: 11400000, guid: 63c95b00511796345991cf64ace7e450, type: 2}
+  playerHealth: {fileID: 1047559277904188990}
   debugShipList:
   - {fileID: 11400000, guid: 3c2c62b7d04d37746b81405a4bcf6a57, type: 2}
   - {fileID: 11400000, guid: c98f4ac2210b54740bbb7315a46a23e2, type: 2}
   - {fileID: 11400000, guid: 5e638ece1ea6c724da5966615914c684, type: 2}
+--- !u!114 &1047559277904188990
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 836289999120296707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 491a26d0adcffb54b9929cb732f47c14, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  onPlayerDied: {fileID: 11400000, guid: 4e73281f8283f0a4499cc87868c24821, type: 2}
 --- !u!1 &2414088017958788558
 GameObject:
   m_ObjectHideFlags: 0
@@ -160,5 +176,83 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 836289999120296706}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5798196750270008466
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3109659893413592304}
+  - component: {fileID: 7892118210805506316}
+  m_Layer: 0
+  m_Name: GameEventListener
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &3109659893413592304
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5798196750270008466}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 836289999120296706}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7892118210805506316
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5798196750270008466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 613be1a1541e3744e876c6717d65ea9e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  eventResponsePairs:
+  - event: {fileID: 11400000, guid: 4e73281f8283f0a4499cc87868c24821, type: 2}
+    response:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 6857707930836821953}
+          m_TargetAssemblyTypeName: UnityEngine.Behaviour, UnityEngine
+          m_MethodName: set_enabled
+          m_Mode: 6
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+    responseGameObject:
+      m_PersistentCalls:
+        m_Calls: []
+    responseTransform:
+      m_PersistentCalls:
+        m_Calls: []
+    responseInt:
+      m_PersistentCalls:
+        m_Calls: []
+    responseFloat:
+      m_PersistentCalls:
+        m_Calls: []
+    responseBool:
+      m_PersistentCalls:
+        m_Calls: []
+    responseString:
+      m_PersistentCalls:
+        m_Calls: []

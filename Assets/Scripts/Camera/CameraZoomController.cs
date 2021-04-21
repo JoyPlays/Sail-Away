@@ -12,6 +12,8 @@ public class CameraZoomController : MonoBehaviour, IUpdateable
 	[SerializeField] private CinemachineVirtualCamera currentVirtualCamera;
 
 	private float _currentZoomValue = 50f;
+	
+	public bool Enabled => enabled;
 
 	private void Start()
 	{

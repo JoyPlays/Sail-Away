@@ -23,6 +23,8 @@ public class WeaponAimController : MonoBehaviour, IAimable, IUpdateable
 	private float distanceToTarget;
 	private Quaternion rotationToTarget;
 
+	public bool Enabled => enabled;
+
 	public ITargetable Target
 	{
 		get => target;

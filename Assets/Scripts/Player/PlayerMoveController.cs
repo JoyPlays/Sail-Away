@@ -7,7 +7,9 @@ public class PlayerMoveController : MonoBehaviour, IUpdateable
 	[SerializeField] private Camera gameCamera;
 	[SerializeField] private Transform playerMovePoint;
 	[SerializeField] private LayerMask rayMask;
-	
+
+	public bool Enabled => enabled;
+
 	private void Start()
 	{
 		if (UpdateController.Instance)
@@ -26,6 +28,11 @@ public class PlayerMoveController : MonoBehaviour, IUpdateable
 	
 	public void OnUpdate(float deltaTime)
 	{
+		if (!enabled)
+		{
+			return;
+		}
+		
 		if (Input.GetMouseButtonDown(0))
 		{
 			Ray ray = gameCamera.ScreenPointToRay(Input.mousePosition);

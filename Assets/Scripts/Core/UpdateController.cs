@@ -38,7 +38,10 @@ public class UpdateController : MonoBehaviour
 		float dt = Time.deltaTime;
 		for (int i = 0; i < _updateableObjects.Count; ++i)
 		{
-			_updateableObjects[i].OnUpdate(dt);
+			if (_updateableObjects[i].Enabled)
+			{
+				_updateableObjects[i].OnUpdate(dt);
+			}
 		}
 	}
 }

@@ -19,6 +19,8 @@ public class TargetGatherController : MonoBehaviour, IUpdateable
 	#endregion
 	
 	#region Properties
+
+	public bool Enabled => enabled;
 	
 	public List<TargetEnemy> targetsInRange { get; private set; } = new List<TargetEnemy>();
 	public List<TargetEnemy> targetsInCone { get; private set; } = new List<TargetEnemy>();

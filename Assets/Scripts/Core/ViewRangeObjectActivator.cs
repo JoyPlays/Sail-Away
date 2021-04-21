@@ -11,6 +11,8 @@ public class ViewRangeObjectActivator : MonoBehaviour, IUpdateable
 	private int frames = 0;
 	
 	private List<IViewRangeItem> viewRangeItems = new List<IViewRangeItem>();
+
+	public bool Enabled => enabled;
 	
 	#region Singletone
 	

@@ -6,6 +6,8 @@ public class CameraMoveController : MonoBehaviour, IUpdateable
 	[SerializeField] private CameraDataSO cameraData;
 
 	private float _currentMoveDistanceDelta = 50f;
+
+	public bool Enabled => enabled;
 	
 	private void Start()
 	{

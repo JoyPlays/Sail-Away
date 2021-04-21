@@ -9,19 +9,34 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 	#endregion
 	
 	#region Properties
-	public bool IsAlive => HitPoints > 0;
+
+	public bool IsAlive { get; set; } = true;
 	
 	public float HitPoints { get; set; }
 	
 	public float MaxHitPoints { get; set; }
 	#endregion
-	
+
+	private void Update()
+	{
+		if (Input.GetKeyDown(KeyCode.Space))
+		{
+			TakeDamage(10);
+		}
+	}
+
 	public void TakeDamage(float damage)
 	{
+		if (!IsAlive)
+		{
+			return;
+		}
+		
 		HitPoints -= damage;
 		DamageResponse();
 
-		if (!IsAlive)
+
+		if (HitPoints <= 0)
 		{
 			OnAllHitPointsLost();
 		}
@@ -34,6 +49,8 @@ public class PlayerHealth : MonoBehaviour, IDamageable
 
 	public void OnAllHitPointsLost()
 	{
+		IsAlive = false;
+		onPlayerDied.Raise();
 		Debug.Log("Player hit points lost");
 	}
 }
